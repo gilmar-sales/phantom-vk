@@ -18,8 +18,12 @@ PHANTOMVK_BEGIN
     }
 
     void Application::run() {
-        while (!glfwWindowShouldClose(windows.begin()->getNativeWindow())) {
+        while (!glfwWindowShouldClose(getMainWindow().getNativeWindow())) {
             glfwPollEvents();
         }
+    }
+
+    Window &Application::getMainWindow() {
+        return *windows.begin();
     }
 PHANTOMVK_END

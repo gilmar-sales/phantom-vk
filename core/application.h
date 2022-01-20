@@ -12,11 +12,13 @@ PHANTOMVK_BEGIN
 
     class Application {
     public:
-        Application(const std::string&  title, int width, int height);
+        Application(const std::string &title, int width, int height);
 
         ~Application() = default;
 
         void run();
+
+        Window &getMainWindow();
 
         static Application *Get();
 
