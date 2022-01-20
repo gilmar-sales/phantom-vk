@@ -3,20 +3,23 @@
 //
 
 #include "application.h"
-#include <iostream>
+#include "log.h"
 
-namespace ph {
-    Application::Application(std::string title, int width, int height) :
-            title(std::move(title)), width(width), height(height) {
+PHANTOMVK_BEGIN
+    Application::Application(const std::string& title, int width, int height) :
+            title(title), width(width), height(height) {
+        windows.emplace_back(title, width, height);
     }
 
     Application *Application::Get() {
-        static Application* instance = CreateApplication();
+        static Application *instance = CreateApplication();
 
         return instance;
     }
 
     void Application::run() {
-        std::cout << title << std::endl;
+        while (!glfwWindowShouldClose(windows.begin()->getNativeWindow())) {
+            glfwPollEvents();
+        }
     }
-} //namespace ph
+PHANTOMVK_END

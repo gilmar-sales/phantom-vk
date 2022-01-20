@@ -5,26 +5,31 @@
 #ifndef PHANTOMVK_APPLICATION_H
 #define PHANTOMVK_APPLICATION_H
 
-#include <string>
+#include "core/core.h"
+#include "core/window.h"
 
-namespace ph {
+PHANTOMVK_BEGIN
+
     class Application {
     public:
-        Application(std::string title, int width, int height);
+        Application(const std::string&  title, int width, int height);
+
         ~Application() = default;
 
         void run();
 
-        static Application* Get();
+        static Application *Get();
 
     private:
+        std::vector<Window> windows;
         std::string title;
         int width;
         int height;
     };
 
-    Application* CreateApplication();
-} //namespace ph
+    Application *CreateApplication();
+
+PHANTOMVK_END
 
 
 #endif //PHANTOMVK_APPLICATION_H
